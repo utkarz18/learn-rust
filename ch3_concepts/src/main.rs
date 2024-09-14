@@ -49,10 +49,13 @@ fn main() {
     for_loop();
 
     //references
-    let refr = String::from("Hello, world!");
-    let mut _r = &refr; // creating immutable reference
-    let mut _p = &refr;
+    let mut s = String::from("hello");
 
+    let r1 = &s; // creating immutable reference
+    let r2 = &s; // no problem in creating another immutable reference
+    //let r3 = &mut s; // BIG PROBLEM as we dont want dirty read in immutable refs
+
+    println!("{}, {}", r1, r2);
     
 }
 
