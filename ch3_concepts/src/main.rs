@@ -47,6 +47,12 @@ fn main() {
     loop_keyword();
     while_loop();
     for_loop();
+
+    //references
+    let refr = String::from("Hello, world!");
+    let mut _r = &refr; // creating immutable reference
+    let mut _p = &refr;
+
     
 }
 
