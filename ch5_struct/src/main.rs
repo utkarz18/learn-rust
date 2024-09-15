@@ -1,19 +1,40 @@
-fn main() {
-    struct User {
-        name: String,
-        email: String,
-        is_active: bool,
-        sign_in_count: u64,
+struct User {
+    name: String,
+    email: String
+}
+
+
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
     }
 
-    let mut user1 = User {
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+
+    fn create_square(side: u32) -> Self {   // associated function without self, usage struct::name_of_function()
+        Self {
+            width: side,
+            height: side
+        }
+    }
+}
+
+fn main() {
+
+    let user1 = User {
         name: String::from("John"),
-        email: String::from("John@example.com"),
-        is_active: true,
-        sign_in_count: 1
+        email: String::from("John@example.com")
     };
 
-    println!("New user with name {} created", user1.name);
+    println!("New user with name {} and email {} created", user1.name, user1.email);
 
     // user1.name = String::from("Sam"); // reassign if user is mutable
 
@@ -25,5 +46,29 @@ fn main() {
     };
 
     println!("New user with name {} created", user2.name);
-    println!("User 1 name {}", user1.sign_in_count);
+
+    
+    let rect1 = Rectangle {
+        width: 30,
+        height: 20
+    };
+    println!("Rectangle 1 {:#?}", rect1);
+    println!("Area of rectangle 1 : {}", rect1.area());
+    dbg!(&rect1);   // another way of printing/debuging a struct type, this macro takes ownership so pass reference
+    println!("Creating Square shaped rectangle {:#?}", Rectangle::create_square(10));
+
+
+
+    let rect2 = Rectangle {
+        width: 15,
+        height: 10
+    };
+
+    let rect3 = Rectangle {
+        width: 35,
+        height: 20
+    };
+
+    println!("Can rect1 hold rect2 ? {}", rect1.can_hold(&rect2));
+    println!("Can rect1 hold rect3 ? {}", rect1.can_hold(&rect3));
 }
