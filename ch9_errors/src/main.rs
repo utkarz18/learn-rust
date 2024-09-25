@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io::ErrorKind;
 
 fn main() {
-    let file_open_result = File::open("Hello_world.txt");
+    let file_open_result = File::open("Hello.txt");
  
     match &file_open_result {
         Ok(file) => println!("{file:?}"),
